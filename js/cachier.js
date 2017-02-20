@@ -10,38 +10,33 @@
   - man kann sich den Betrag in der Kasse anzeigen lassen
 */
 
-function KassenMaschine() {
+function Cachier() {
   var kasse = 0;
 
+  var inventory = [
+    new InventoryItem(1, "Milch", 20, 100),
+    new InventoryItem(2, "Käse", 30, 2000),
+    new InventoryItem(3, "Wurst", 30, 2000)
+  ];
 
   this.addCash = function (cash) {
     kasse += cash;
   }
 
-
-
-
-
   this.removeCash = function (cash) {
 
     if (kasse < cash){
-      console.log("Kassenbetrag zu niedrig!");
-      return;
+      throw new Error("Kassenbetrag zu niedrig!");
     }
 
     kasse -= cash;
   }
 
-
-  this.print = function(){
-    console.log(kasse);
+  this.getInventory = function() {
+    return inventory;
   }
 
-
+  this.getKasse = function() {
+    return kasse;
+  }
 }
-
-var kassenMaschine = new KassenMaschine();
-kassenMaschine.addCash(1000);
-kassenMaschine.print();
-kassenMaschine.removeCash(400);
-kassenMaschine.print();

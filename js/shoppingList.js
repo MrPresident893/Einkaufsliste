@@ -16,6 +16,9 @@ function ShoppingList() {
 
   // PUBLIC addItem
   this.addItem = function(item) {
+    if (!item.getPrice) {
+      throw new Error("Kein korrektes Item!");
+    }
     list.push(item);
   }
 
@@ -35,25 +38,7 @@ function ShoppingList() {
   }
 
   // PUBLIC print
-  this.print = function() {
-    console.log("Your shopping list:");
-    console.log("###################");
-    for (var i = 0; i < list.length; i++) {
-      console.log(list[i]);
-
-    }
-    console.log("###################");
+  this.getList = function() {
+    return list;
   }
 }
-
-/** EXECUTION
-*/
-var shoppingList = new ShoppingList();
-shoppingList.addItem("Milch 500ml");
-shoppingList.addItem("Kaffe 10kg");
-shoppingList.print();
-shoppingList.removeItem("Milch");
-console.log("AFTER DELETE:");
-shoppingList.print();
-
-console.log(shoppingList);
